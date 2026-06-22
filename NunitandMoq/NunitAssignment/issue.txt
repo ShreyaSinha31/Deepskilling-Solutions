@@ -1,0 +1,7 @@
+I was unable to complete the exercise because I could not access the application file provided through the download link in the DeepSkilling portal.
+
+When attempting to access the file, I received the following error:
+
+AADSTS90072: User account does not exist in tenant 'Cognizant' and cannot access the application.
+
+As a result, I was unable to download the required CalcLibrary application needed to perform the handson exercise.
