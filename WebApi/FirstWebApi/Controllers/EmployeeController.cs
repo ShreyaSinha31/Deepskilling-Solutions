@@ -1,22 +1,54 @@
 using Microsoft.AspNetCore.Mvc;
+using FirstWebApi.Filters;
 
 namespace FirstWebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [CustomAuthFilter]
     public class EmployeeController : ControllerBase
     {
-        private static List<Employee> employees = new()
-        {
-            new Employee{ Id=1, Name="Shreya", Department="IT"},
-            new Employee{ Id=2, Name="Rahul", Department="HR"},
-            new Employee{ Id=3, Name="Priya", Department="Finance"}
-        };
-
         [HttpGet]
-        public IActionResult Get()
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public ActionResult<List<Employee>> GetStandard()
         {
-            return Ok(employees);
+            return Ok(GetStandardEmployeeList());
+        }
+
+        [HttpPost]
+        public IActionResult Post([FromBody] Employee employee)
+        {
+            return Ok(employee);
+        }
+
+        private List<Employee> GetStandardEmployeeList()
+        {
+            return new List<Employee>
+            {
+                new Employee
+                {
+                    Id = 1,
+                    Name = "Shreya",
+                    Salary = 50000,
+                    Permanent = true,
+                    DateOfBirth = new DateTime(2004,1,1),
+
+                    Department = new Department
+                    {
+                        Id = 1,
+                        Name = "IT"
+                    },
+
+                    Skills = new List<Skill>
+                    {
+                        new Skill
+                        {
+                            Id = 1,
+                            Name = "C#"
+                        }
+                    }
+                }
+            };
         }
     }
 }
