@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using FirstWebApi.Filters;
 
@@ -5,7 +6,7 @@ namespace FirstWebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    //[CustomAuthFilter]
+    [Authorize]
     public class EmployeeController : ControllerBase
     {
         private static List<Employee> employees = new()
